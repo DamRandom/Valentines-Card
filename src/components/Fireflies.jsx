@@ -5,13 +5,15 @@ function Fireflies() {
   const [fireflies, setFireflies] = useState([]);
 
   useEffect(() => {
-    const numFireflies = 20;
+    const numFireflies = 40;
     const newFireflies = Array.from({ length: numFireflies }, (_, i) => ({
       id: i,
       x: Math.random() * window.innerWidth,
       y: Math.random() * window.innerHeight,
-      speedX: (Math.random() - 0.5) * 2,
-      speedY: (Math.random() - 0.5) * 2,
+      speedX: (Math.random() - 0.5) * 0.5, // Movimiento más lento
+      speedY: (Math.random() - 0.5) * 0.5,
+      size: Math.random() * 6 + 5, // Tamaño aleatorio entre 5px y 11px
+      flickerDuration: Math.random() * 2 + 2, // Duración de parpadeo entre 2s y 4s
     }));
 
     setFireflies(newFireflies);
@@ -31,19 +33,19 @@ function Fireflies() {
           const dy = y - mouseY;
           const distance = Math.sqrt(dx * dx + dy * dy);
 
-          // Si el cursor está cerca, la luciérnaga huye
+          // Si el cursor está cerca, la luciérnaga huye más rápido
           if (distance < 100) {
-            speedX += dx * 0.02;
-            speedY += dy * 0.02;
+            speedX += dx * 0.05; // Aceleración al huir
+            speedY += dy * 0.05;
           }
 
-          // Variar movimiento de manera aleatoria
-          speedX += (Math.random() - 0.5) * 0.1;
-          speedY += (Math.random() - 0.5) * 0.1;
+          // Variar movimiento suavemente
+          speedX += (Math.random() - 0.5) * 0.05;
+          speedY += (Math.random() - 0.5) * 0.05;
 
-          // Limitar velocidad
-          speedX = Math.max(-2, Math.min(2, speedX));
-          speedY = Math.max(-2, Math.min(2, speedY));
+          // Limitar velocidad máxima
+          speedX = Math.max(-1.5, Math.min(1.5, speedX));
+          speedY = Math.max(-1.5, Math.min(1.5, speedY));
 
           // Mover la luciérnaga
           x += speedX;
@@ -81,6 +83,9 @@ function Fireflies() {
           style={{
             left: `${firefly.x}px`,
             top: `${firefly.y}px`,
+            width: `${firefly.size}px`,
+            height: `${firefly.size}px`,
+            animation: `flicker ${firefly.flickerDuration}s infinite alternate ease-in-out`,
           }}
         />
       ))}

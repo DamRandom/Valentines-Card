@@ -10,25 +10,35 @@
 
 .firefly {
   position: absolute;
-  width: 10px;
-  height: 10px;
-  background-color: #ffeb3b; /* Color de las luciérnagas */
+  background-color: #ffeb3b;
   border-radius: 50%;
-  box-shadow: 0 0 5px 2px #ffeb3b; /* Destello */
-  opacity: 0.8;
+  box-shadow: 0 0 8px 4px #ffeb3b;
+  opacity: 0.9;
   transition: transform 0.1s linear;
 }
 
 
+/* Animación de parpadeo más notoria */
 @keyframes flicker {
   0% {
-      opacity: 0.5;
+    opacity: 0.4;
+    box-shadow: 0 0 3px 2px #ffeb3b;
+  }
+  25% {
+    opacity: 0.8;
+    box-shadow: 0 0 6px 3px #ffcc00;
   }
   50% {
-      opacity: 1;
+    opacity: 1;
+    box-shadow: 0 0 10px 5px #ffeb3b;
+  }
+  75% {
+    opacity: 0.6;
+    box-shadow: 0 0 5px 2px #ffcc00;
   }
   100% {
-      opacity: 0.5;
+    opacity: 0.3;
+    box-shadow: 0 0 2px 1px #ffeb3b;
   }
 }
 
