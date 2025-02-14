@@ -1,0 +1,56 @@
+.firefly-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+.firefly {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background-color: #ffeb3b; /* Color de las luciérnagas */
+  border-radius: 50%;
+  box-shadow: 0 0 5px 2px #ffeb3b; /* Destello */
+  opacity: 0.8;
+  transition: transform 0.1s linear;
+}
+
+
+@keyframes flicker {
+  0% {
+      opacity: 0.5;
+  }
+  50% {
+      opacity: 1;
+  }
+  100% {
+      opacity: 0.5;
+  }
+}
+
+@keyframes move {
+  0% {
+      transform: translate(0, 0);
+  }
+  25% {
+      transform: translate(20px, -20px);
+  }
+  50% {
+      transform: translate(40px, 20px);
+  }
+  75% {
+      transform: translate(-20px, -40px);
+  }
+  100% {
+      transform: translate(10px, 10px);
+  }
+}
+
+/* Si la luciérnaga sale de la pantalla, la ocultamos */
+.hidden {
+  opacity: 0;
+}
