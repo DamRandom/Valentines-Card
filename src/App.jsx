@@ -2,11 +2,14 @@ import { useState, useEffect } from "react";
 import "./App.css";
 import Fireflies from "./components/Fireflies";
 import BlurMessage from "./components/BlurMessage";
+import Flowers from "./components/Flowers"; // Importa el nuevo componente
 
 function App() {
   const [messageIndex, setMessageIndex] = useState(0);
-  const [currentMessage, setCurrentMessage] = useState(null); // Mensaje actual
-  const [showInitialMessage, setShowInitialMessage] = useState(true); // Controla si se muestra el mensaje inicial
+  const [currentMessage, setCurrentMessage] = useState(null);
+  const [showInitialMessage, setShowInitialMessage] = useState(true);
+  const [hideMessages, setHideMessages] = useState(false); // Para ocultar los mensajes antes de mostrar las flores
+  const [showFlowers, setShowFlowers] = useState(false); // Para controlar la aparición de las flores
 
   useEffect(() => {
     const messages = [
@@ -17,44 +20,57 @@ function App() {
     ];
 
     if (showInitialMessage) {
-      setCurrentMessage({ text: "Feliz San Valentín, Mamá", size: "6xl" });
+      setCurrentMessage({ text: "Feliz San Valentín, Madre", size: "6xl" });
       const timer = setTimeout(() => {
-        setShowInitialMessage(false); // Después de mostrar el mensaje inicial, se oculta
-      }, 2000); // Muestra "Feliz San Valentín" por 2 segundos
-
+        setShowInitialMessage(false);
+      }, 2000);
       return () => clearTimeout(timer);
     } else if (messageIndex < messages.length) {
       const message = messages[messageIndex];
-      setCurrentMessage(message); // Set the current message
-      const timeToRead = message.text.length * 100; // Approx 100ms per character
+      setCurrentMessage(message);
+      const timeToRead = message.text.length * 100;
 
       const timer = setTimeout(() => {
-        setMessageIndex(messageIndex + 1); // Move to the next message
-      }, timeToRead); // Delay based on the message length
+        setMessageIndex((prevIndex) => prevIndex + 1);
+      }, timeToRead);
 
       return () => clearTimeout(timer);
+    } else {
+      // Ocultar los mensajes antes de mostrar las flores
+      const hideTimer = setTimeout(() => {
+        setHideMessages(true);
+      }, 1000);
+
+      // Mostrar las flores después de ocultar los mensajes
+      const flowerTimer = setTimeout(() => {
+        setShowFlowers(true);
+      }, 2000);
+
+      return () => {
+        clearTimeout(hideTimer);
+        clearTimeout(flowerTimer);
+      };
     }
-  }, [messageIndex, showInitialMessage]); // Dependencias: cuando el mensaje cambia o se oculta el inicial
+  }, [messageIndex, showInitialMessage]);
 
   return (
     <div className="App">
       <Fireflies />
       <h1 className="text-4xl text-white text-center mt-10">
         {showInitialMessage ? (
-          <BlurMessage text="Feliz San Valentín, Mamá" textSize="6xl" />
-        ) : (
-          <></>
-        )}
+          <BlurMessage text="Feliz San Valentín, Madre" textSize="6xl" />
+        ) : null}
       </h1>
       <div className="message-container mt-6">
-        {currentMessage && !showInitialMessage && (
+        {!hideMessages && currentMessage && !showInitialMessage && (
           <BlurMessage
-            key={messageIndex} // Ensure the component re-renders when message changes
+            key={messageIndex}
             text={currentMessage.text}
             textSize={currentMessage.size}
           />
         )}
       </div>
+      {showFlowers && <Flowers />} {/* Renderizar las flores cuando el estado sea true */}
     </div>
   );
 }
