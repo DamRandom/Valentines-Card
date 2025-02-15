@@ -12,6 +12,8 @@ function Fireflies() {
       y: Math.random() * window.innerHeight,
       speedX: (Math.random() - 0.5) * 0.5,
       speedY: (Math.random() - 0.5) * 0.5,
+      initialSpeedX: (Math.random() - 0.5) * 0.5, // Store initial speed
+      initialSpeedY: (Math.random() - 0.5) * 0.5, // Store initial speed
       size: Math.random() * 6 + 5, 
       flickerDuration: Math.random() * 2 + 2,
     }));
@@ -26,19 +28,21 @@ function Fireflies() {
     const updateFireflies = () => {
       setFireflies((prevFireflies) =>
         prevFireflies.map((firefly) => {
-          let { x, y, speedX, speedY } = firefly;
+          let { x, y, speedX, speedY, initialSpeedX, initialSpeedY } = firefly;
 
           const dx = x - mouseX;
           const dy = y - mouseY;
           const distance = Math.sqrt(dx * dx + dy * dy);
 
           if (distance < 100) {
+            // Speed up when near the cursor
             speedX += dx * 0.05;
             speedY += dy * 0.05;
+          } else {
+            // Return to initial speed when not near the cursor
+            speedX = initialSpeedX + (Math.random() - 0.5) * 0.05;
+            speedY = initialSpeedY + (Math.random() - 0.5) * 0.05;
           }
-
-          speedX += (Math.random() - 0.5) * 0.05;
-          speedY += (Math.random() - 0.5) * 0.05;
 
           speedX = Math.max(-1.5, Math.min(1.5, speedX));
           speedY = Math.max(-1.5, Math.min(1.5, speedY));
@@ -49,7 +53,7 @@ function Fireflies() {
           if (x < 0 || x > window.innerWidth) speedX *= -1;
           if (y < 0 || y > window.innerHeight) speedY *= -1;
 
-          return { ...firefly, x, y, speedX, speedY };
+          return { ...firefly, x, y, speedX, speedY, initialSpeedX, initialSpeedY };
         })
       );
 

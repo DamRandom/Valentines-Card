@@ -44,7 +44,7 @@ function App() {
       // Delay before showing flowers
       const flowerTimer = setTimeout(() => {
         setShowFlowers(true);
-      }, 2000);
+      }, 0);
 
       return () => {
         clearTimeout(hideTimer);
