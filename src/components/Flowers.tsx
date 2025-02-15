@@ -1,5 +1,5 @@
 import React from "react";
-import "../styles/Flowers.css"; // Asegúrate de importar los estilos
+import "../styles/Flowers.css";
 
 const Flowers: React.FC = () => {
   return (

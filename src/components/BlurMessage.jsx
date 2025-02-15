@@ -4,18 +4,18 @@ import BlurText from "./BlurText";
 
 const BlurMessage = ({ text, textSize, onAnimationComplete }) => {
   const [hasAnimated, setHasAnimated] = useState(false);
-  const hasAnimatedRef = useRef(false); // Usamos ref para evitar que se reinicie la animación
+  const hasAnimatedRef = useRef(false); 
 
   useEffect(() => {
     if (!hasAnimatedRef.current) {
-      hasAnimatedRef.current = true; // Solo permite la animación una vez
+      hasAnimatedRef.current = true; 
       setHasAnimated(true);
     }
-  }, []); // El useEffect se ejecuta una sola vez al montar el componente
+  }, []); 
 
   useEffect(() => {
     if (hasAnimated && onAnimationComplete) {
-      onAnimationComplete(); // Notificar que la animación ha terminado
+      onAnimationComplete(); 
     }
   }, [hasAnimated, onAnimationComplete]);
 
@@ -30,11 +30,11 @@ const BlurMessage = ({ text, textSize, onAnimationComplete }) => {
   );
 };
 
-// ✅ Definir los tipos de props
+
 BlurMessage.propTypes = {
   text: PropTypes.string.isRequired,
   textSize: PropTypes.string.isRequired,
-  onAnimationComplete: PropTypes.func.isRequired, // Asegurarnos de que se pase esta prop
+  onAnimationComplete: PropTypes.func.isRequired, 
 };
 
 export default BlurMessage;

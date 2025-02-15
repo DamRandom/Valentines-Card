@@ -2,21 +2,21 @@ import { useState, useEffect } from "react";
 import "./App.css";
 import Fireflies from "./components/Fireflies";
 import BlurMessage from "./components/BlurMessage";
-import Flowers from "./components/Flowers"; // Importa el nuevo componente
+import Flowers from "./components/Flowers";
 
 function App() {
   const [messageIndex, setMessageIndex] = useState(0);
   const [currentMessage, setCurrentMessage] = useState(null);
   const [showInitialMessage, setShowInitialMessage] = useState(true);
-  const [hideMessages, setHideMessages] = useState(false); // Para ocultar los mensajes antes de mostrar las flores
-  const [showFlowers, setShowFlowers] = useState(false); // Para controlar la aparición de las flores
+  const [hideMessages, setHideMessages] = useState(false); // Hide messages before showing flowers
+  const [showFlowers, setShowFlowers] = useState(false); // Control flowers appearance
 
   useEffect(() => {
     const messages = [
       { text: "Sé que no soy el hijo perfecto...", size: "2xl" },
       { text: "Sé que aún me queda mucho por aprender y mejorar.", size: "xl" },
       { text: "No soy bueno para hablar de mis sentimientos...", size: "lg" },
-      { text: "Así que aprendí a programar para hacer algo especial para ti:", size: "xl" }
+      { text: "Así que aprendí a programar para hacer algo especial para ti:", size: "xl" },
     ];
 
     if (showInitialMessage) {
@@ -36,12 +36,12 @@ function App() {
 
       return () => clearTimeout(timer);
     } else {
-      // Ocultar los mensajes antes de mostrar las flores
+      // Delay before hiding messages
       const hideTimer = setTimeout(() => {
         setHideMessages(true);
       }, 1000);
 
-      // Mostrar las flores después de ocultar los mensajes
+      // Delay before showing flowers
       const flowerTimer = setTimeout(() => {
         setShowFlowers(true);
       }, 2000);
@@ -70,7 +70,7 @@ function App() {
           />
         )}
       </div>
-      {showFlowers && <Flowers />} {/* Renderizar las flores cuando el estado sea true */}
+      {showFlowers && <Flowers />} {/* Show flowers when ready */}
     </div>
   );
 }

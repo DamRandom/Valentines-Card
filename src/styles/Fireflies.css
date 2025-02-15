@@ -17,8 +17,6 @@
   transition: transform 0.1s linear;
 }
 
-
-/* Animación de parpadeo más notoria */
 @keyframes flicker {
   0% {
     opacity: 0.4;
@@ -60,7 +58,6 @@
   }
 }
 
-/* Si la luciérnaga sale de la pantalla, la ocultamos */
 .hidden {
   opacity: 0;
 }

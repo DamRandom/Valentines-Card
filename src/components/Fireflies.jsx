@@ -10,10 +10,10 @@ function Fireflies() {
       id: i,
       x: Math.random() * window.innerWidth,
       y: Math.random() * window.innerHeight,
-      speedX: (Math.random() - 0.5) * 0.5, // Movimiento más lento
+      speedX: (Math.random() - 0.5) * 0.5,
       speedY: (Math.random() - 0.5) * 0.5,
-      size: Math.random() * 6 + 5, // Tamaño aleatorio entre 5px y 11px
-      flickerDuration: Math.random() * 2 + 2, // Duración de parpadeo entre 2s y 4s
+      size: Math.random() * 6 + 5, 
+      flickerDuration: Math.random() * 2 + 2,
     }));
 
     setFireflies(newFireflies);
@@ -28,30 +28,24 @@ function Fireflies() {
         prevFireflies.map((firefly) => {
           let { x, y, speedX, speedY } = firefly;
 
-          // Distancia del mouse
           const dx = x - mouseX;
           const dy = y - mouseY;
           const distance = Math.sqrt(dx * dx + dy * dy);
 
-          // Si el cursor está cerca, la luciérnaga huye más rápido
           if (distance < 100) {
-            speedX += dx * 0.05; // Aceleración al huir
+            speedX += dx * 0.05;
             speedY += dy * 0.05;
           }
 
-          // Variar movimiento suavemente
           speedX += (Math.random() - 0.5) * 0.05;
           speedY += (Math.random() - 0.5) * 0.05;
 
-          // Limitar velocidad máxima
           speedX = Math.max(-1.5, Math.min(1.5, speedX));
           speedY = Math.max(-1.5, Math.min(1.5, speedY));
 
-          // Mover la luciérnaga
           x += speedX;
           y += speedY;
 
-          // Evitar que se salgan de la pantalla
           if (x < 0 || x > window.innerWidth) speedX *= -1;
           if (y < 0 || y > window.innerHeight) speedY *= -1;
 
@@ -64,7 +58,6 @@ function Fireflies() {
 
     requestAnimationFrame(updateFireflies);
 
-    // Capturar movimiento del mouse
     const handleMouseMove = (e) => {
       mouseX = e.clientX;
       mouseY = e.clientY;
