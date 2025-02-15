@@ -46,3 +46,12 @@ html, body {
 .read-the-docs {
   color: #888;
 }
+
+.message-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 50vh;
+  gap: 10px;
+}
