@@ -50,8 +50,22 @@ function Fireflies() {
           x += speedX;
           y += speedY;
 
-          if (x < 0 || x > window.innerWidth) speedX *= -1;
-          if (y < 0 || y > window.innerHeight) speedY *= -1;
+          // Prevent them from leaving the screen
+          if (x <= 0) {
+            x = 0;
+            speedX *= -1;
+          } else if (x >= window.innerWidth) {
+            x = window.innerWidth;
+            speedX *= -1;
+          }
+
+          if (y <= 0) {
+            y = 0;
+            speedY *= -1;
+          } else if (y >= window.innerHeight) {
+            y = window.innerHeight;
+            speedY *= -1;
+          }
 
           return { ...firefly, x, y, speedX, speedY, initialSpeedX, initialSpeedY };
         })
