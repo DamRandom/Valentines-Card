@@ -6,6 +6,7 @@
   height: 100vh;
   pointer-events: none;
   z-index: 9999;
+  overflow: hidden; /* Prevents overflow and scroll */
 }
 
 .firefly {
@@ -15,6 +16,7 @@
   box-shadow: 0 0 8px 4px #ffeb3b;
   opacity: 0.9;
   transition: transform 0.1s linear;
+  will-change: transform; /* Optimizes rendering performance */
 }
 
 @keyframes flicker {

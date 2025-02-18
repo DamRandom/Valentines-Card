@@ -1,4 +1,4 @@
-/* Ajustes generales */
+/* General adjustments */
 #root {
   max-width: 1280px;
   margin: 0 auto;
@@ -8,27 +8,31 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 100vh; /* Asegura que todo esté centrado en la pantalla */
+  min-height: 100vh;
+  overflow: hidden;
 }
 
-/* Ajuste del tamaño de los mensajes */
+/* Message container adjustments */
 .message-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 50vh; /* Mantiene los mensajes en el centro */
+  height: 50vh; /* Keep messages centered */
   width: 90%;
   gap: 10px;
+  overflow: hidden; /* Prevent horizontal overflow */
 }
 
-/* Ajuste del tamaño del texto */
+/* Text size adjustments */
 h1, .message-container p {
-  font-size: clamp(1.5rem, 4vw, 2rem); /* Adaptación fluida */
+  font-size: clamp(1.5rem, 4vw, 2rem); /* Fluid adaptation */
   margin-bottom: 10px;
+  word-wrap: break-word; /* Break long words */
+  white-space: normal; /* Allow wrapping */
 }
 
-/* Ajustes para las flores */
+/* Flower adjustments */
 .flowers-container {
   display: flex;
   justify-content: center;
@@ -37,18 +41,17 @@ h1, .message-container p {
   max-width: 1200px;
 }
 
-/* Distribución en pantallas grandes */
 .flowers {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 30px; /* Espaciado entre flores */
+  gap: 30px; /* Spacing between flowers */
 }
 
-/* Responsividad en móviles */
+/* Mobile responsiveness */
 @media (max-width: 768px) {
   .message-container {
-    height: 60vh; /* Eleva los mensajes un poco más */
+    height: 60vh; /* Slightly raise the messages */
   }
 
   h1 {
@@ -56,12 +59,17 @@ h1, .message-container p {
   }
 
   .flowers {
-    flex-direction: column; /* Cambia a formato vertical */
+    flex-direction: column; /* Change to vertical layout */
     align-items: center;
-    gap: 20px; /* Espaciado entre flores */
+    gap: 20px; /* Spacing between flowers */
   }
 
   .flower {
-    transform: scale(0.8); /* Reduce el tamaño de las flores en móviles */
+    transform: scale(0.8); /* Reduce flower size on mobile */
+  }
+
+  /* Prevent horizontal scroll on mobile */
+  #root {
+    overflow-x: hidden;
   }
 }
