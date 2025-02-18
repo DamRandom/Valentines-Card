@@ -9,7 +9,6 @@
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  overflow: hidden;
 }
 
 /* Message container adjustments */
@@ -18,21 +17,18 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 50vh; /* Keep messages centered */
+  height: 50vh;
   width: 90%;
   gap: 10px;
-  overflow: hidden; /* Prevent horizontal overflow */
 }
 
 /* Text size adjustments */
 h1, .message-container p {
-  font-size: clamp(1.5rem, 4vw, 2rem); /* Fluid adaptation */
+  font-size: clamp(1.5rem, 4vw, 2rem);
   margin-bottom: 10px;
-  word-wrap: break-word; /* Break long words */
-  white-space: normal; /* Allow wrapping */
 }
 
-/* Flower adjustments */
+/* Flower container adjustments */
 .flowers-container {
   display: flex;
   justify-content: center;
@@ -41,35 +37,49 @@ h1, .message-container p {
   max-width: 1200px;
 }
 
+/* Large screen layout */
 .flowers {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 30px; /* Spacing between flowers */
+  gap: 30px;
 }
 
 /* Mobile responsiveness */
 @media (max-width: 768px) {
+  /* Adjust message container */
   .message-container {
-    height: 60vh; /* Slightly raise the messages */
+    height: 50vh;
+    justify-content: flex-start;
+    padding: 10px;
   }
 
+  /* Adjust text size */
   h1 {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
+    margin: 20px 0;
+  }
+
+  .message-container p {
+    font-size: 1rem;
+    margin-bottom: 15px;
+    width: 100%;
+  }
+
+  /* Adjust flower container */
+  .flowers-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    padding: 10px;
+    width: 100%;
   }
 
   .flowers {
-    flex-direction: column; /* Change to vertical layout */
-    align-items: center;
-    gap: 20px; /* Spacing between flowers */
+    gap: 15px;
   }
 
   .flower {
-    transform: scale(0.8); /* Reduce flower size on mobile */
-  }
-
-  /* Prevent horizontal scroll on mobile */
-  #root {
-    overflow-x: hidden;
+    transform: scale(0.7);
   }
 }
