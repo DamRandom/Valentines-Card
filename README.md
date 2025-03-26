@@ -14,16 +14,17 @@ An animated Valentine's card featuring a seamless blend of text and visual effec
 1. Clone the repository:
 
    ```sh
-   git clone https://github.com/yourusername/Valentines-Card.git
+   git clone https://github.com/DamRandom/Valentines-Card.git
    ```
 
 2. Open `index.html` in a web browser.
 
 ## Technologies Used
 
-- HTML, CSS, JavaScript
-- CSS animations & keyframes
-- JavaScript for interactive elements
+- CSS (67.3%)
+- JavaScript (25.8%)
+- TypeScript (6.0%)
+- HTML (0.9%)
 
 ## License
 
